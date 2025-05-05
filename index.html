@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Кнопка Перевірка знання таблиці істинності</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    table.main {
+      width: 90%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    table.main th, table.main td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    table.inner {
+      width: 100%;
+      margin-top: 10px;
+      border-collapse: collapse;
+    }
+    table.inner caption {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    table.inner th, table.inner td {
+      border: 1px solid #888;
+      padding: 5px;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #990000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+    button:hover {
+      background-color: #cc0000;
+    }
+  </style>
+  <script type="text/javascript">
+    function testXOR() {
+      // Таблиця істинності для логічного елемента "Виключає або" (XOR)
+      // 0 XOR 0 = 0, 0 XOR 1 = 1, 1 XOR 0 = 1, 1 XOR 1 = 0
+      var truthTable = [
+        { A: 0, B: 0, answer: 0 },
+        { A: 0, B: 1, answer: 1 },
+        { A: 1, B: 0, answer: 1 },
+        { A: 1, B: 1, answer: 0 }
+      ];
+      
+      // Випадкове питання
+      var randomIndex = Math.floor(Math.random() * truthTable.length);
+      var question = truthTable[randomIndex];
+      
+      // Формування запитання з інструкцією
+      var promptText = "Визначте результат логічної операції Виключає або (XOR) для:\n" +
+                       "A = " + question.A + ", B = " + question.B + "\n" +
+                       "(Введіть 0 або 1)";
+      
+      var userInput = prompt(promptText);
+      
+      // Якщо користувач скасував запит
+      if (userInput === null) return;
+      
+      // Перевірка відповіді
+      if (parseInt(userInput, 10) === question.answer) {
+        alert("Вірно!");
+      } else {
+        alert("Невірно. Правильна відповідь: " + question.answer);
+      }
+    }
+  </script>
+</head>
+<body>
+  <table class="main">
+    <tr>
+      <th>Тестування</th>
+      <th>Вигляд форми</th>
+    </tr>
+    <tr>
+      <td>
+        Кнопка Перевірка знання таблиці істинності за допомогою командних кнопок
+      </td>
+      <td>
+        <p>Оберіть правильну відповідь для логічного елемента <strong>ВИКЛЮЧАЄ АБО (XOR)</strong>:</p>
+        <!-- Демонстраційна таблиця істинності -->
+        <table class="inner">
+          <caption>Логічний елемент ВИКЛЮЧАЄ АБО (операція виключної диз'юнкції)</caption>
+          <tr>
+            <th>Логічний вираз</th>
+            <th>Правильна відповідь</th>
+          </tr>
+          <tr>
+            <td>0 ⊕ 0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>0 ⊕ 1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>1 ⊕ 0</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>1 ⊕ 1</td>
+            <td>0</td>
+          </tr>
+        </table>
+        <!-- Кнопка для запуску тесту -->
+        <button onmouseover="testXOR()">Наведіть курсор на кнопку</button>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
